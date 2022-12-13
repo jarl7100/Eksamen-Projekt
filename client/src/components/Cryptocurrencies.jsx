@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardMedia, Typography, CardActionArea } from '@mui/material';
-import millify from 'millify';
 import { Link } from 'react-router-dom';
 import icon from '../images/Bitcoin.svg.png';
 
