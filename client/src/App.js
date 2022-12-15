@@ -6,36 +6,41 @@ import Signup from './components/Signup';
 import Signin from './components/Signin';
 import Cryptostats from './components/Cryptostats';
 import { Route, Routes } from 'react-router-dom';
-import {Toolbar} from '@mui/material';
+import { Toolbar } from '@mui/material';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
 
 function App() {
+  const client = new QueryClient();
   return (
     <>
-      <Navbar/>
-          <Toolbar/>
-    <div className='container'>
-      <Routes>
-        <Route path='/cryptos' element={<Cryptocurrencies/>}/>
-        <Route path='/news' element={<News/>}/>
-        <Route path='/cryptostats' element={<Cryptostats/>}/>
-        <Route path='/Signup' element={<Signup/>}/>
-        <Route path='/Signin' element={<Signin/>}/>
-      </Routes>
-    </div>
+      <QueryClientProvider client={client}>
+        <Navbar />
+        <Toolbar />
+        <div className='container'>
+          <Routes>
+            <Route path='/cryptos' element={<Cryptocurrencies />} />
+            <Route path='/news' element={<News />} />
+            <Route path='/cryptostats' element={<Cryptostats />} />
+            <Route path='/Signup' element={<Signup />} />
+            <Route path='/Signin' element={<Signin />} />
+          </Routes>
+        </div>
+      </QueryClientProvider>
     </>
   )
 }
 
 export default App
 
-  /*   const [backendData, setBackendData] = useState([{}])
-  
-    useEffect(() => {
-      fetch("/api").then(
-        res => res.json())
-        .then(
-          data => {
-          setBackendData(data)
-          }
-        )
-  }, []) */
+/*   const [backendData, setBackendData] = useState([{}])
+ 
+  useEffect(() => {
+    fetch("/api").then(
+      res => res.json())
+      .then(
+        data => {
+        setBackendData(data)
+        }
+      )
+}, []) */
