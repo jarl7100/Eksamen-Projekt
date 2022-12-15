@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { Avatar, CssBaseline, FormControlLabel, Checkbox, Link, Grid, Box, Button, TextField, Typography, Container } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+
 
 const theme = createTheme();
 
@@ -71,6 +71,7 @@ export const Signup = () => {
                             </Grid>
                         </Grid>
                         <Button
+                        href='/mypage'
                             type="submit"
                             fullWidth
                             variant="contained"

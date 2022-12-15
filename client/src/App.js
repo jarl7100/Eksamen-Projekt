@@ -4,11 +4,12 @@ import Navbar from './components/Navbar';
 import News from './components/News';
 import Signup from './components/Signup';
 import Signin from './components/Signin';
+import Mypage from './components/Mypage';
 import Cryptostats from './components/Cryptostats';
 import { Route, Routes } from 'react-router-dom';
 import { Toolbar } from '@mui/material';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-
+import './App.css';
 
 function App() {
   const client = new QueryClient();
@@ -24,6 +25,7 @@ function App() {
             <Route path='/cryptostats' element={<Cryptostats />} />
             <Route path='/Signup' element={<Signup />} />
             <Route path='/Signin' element={<Signin />} />
+            <Route path='/Mypage' element={<Mypage />} />
           </Routes>
         </div>
       </QueryClientProvider>

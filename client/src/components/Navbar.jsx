@@ -19,6 +19,7 @@ const Navbar = () => {
                         <Tab label="Cryptos" href='/cryptos'/>
                         <Tab label="News" href='/news'/>
                         <Tab label="Crypto stats" href='cryptostats' />
+                        <Tab label="My page" href='mypage' />
                     </Tabs>
                     <Button sx={{ marginLeft: "auto" }} variant="outlined" href='/signin' >
                         sign in{" "}
