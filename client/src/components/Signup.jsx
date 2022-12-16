@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Avatar, CssBaseline, FormControlLabel, Checkbox, Link, Grid, Box, Button, TextField, Typography, Container } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-
+const sqlite3 = require('sqlite3').verbose();
 
 const theme = createTheme();
 
 export const Signup = () => {
+
+
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
