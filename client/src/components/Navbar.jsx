@@ -10,11 +10,15 @@ const Navbar = () => {
         <React.Fragment>
             <AppBar sx={{ background: '#063970' } }>
                 <Toolbar>
-                    <Avatar 
-                    onClick={() => setValue()}
-                    sx={{ width: 'auto', height: 50, marginRight: "20px"}}
-                    variant='square'
-                    src={menuIcon} />
+                <a href="/">
+    <Avatar 
+    sx={{ width: 'auto', height: 50, marginRight: "20px"}}
+    variant='square'
+    src={menuIcon} />
+</a>
+                   
+                   
+                   
                     <Tabs textColor="inherit" value={value} onChange={(e,value) => setValue(value)} indicatorColor="primary" >
                         <Tab label="Cryptos" href='/cryptos'/>
                         <Tab label="News" href='/news'/>

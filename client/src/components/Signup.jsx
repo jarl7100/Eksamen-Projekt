@@ -2,11 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { Avatar, CssBaseline, FormControlLabel, Checkbox, Link, Grid, Box, Button, TextField, Typography, Container } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-
-
 const theme = createTheme();
 
 export const Signup = () => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        console.log({
+        firstName: data.get('firstName'),
+        lastName: data.get('lastName'),
+          username: data.get('userName'),
+          password: data.get('password'),
+        });
+      };
+
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
@@ -25,7 +34,7 @@ export const Signup = () => {
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
-                    <Box component="form" noValidate sx={{ mt: 3 }}>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <TextField
@@ -52,10 +61,10 @@ export const Signup = () => {
                                 <TextField
                                     required
                                     fullWidth
-                                    id="email"
-                                    label="Email Address"
-                                    name="email"
-                                    autoComplete="email"
+                                    id="userName"
+                                    label="Username"
+                                    name="userName"
+                                    autoComplete="uname"
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -71,7 +80,6 @@ export const Signup = () => {
                             </Grid>
                         </Grid>
                         <Button
-                        href='/mypage'
                             type="submit"
                             fullWidth
                             variant="contained"

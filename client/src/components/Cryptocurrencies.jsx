@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Axios from 'axios';
 
+
 // Her henter vi data fra Coinranking API
 const options = {
     method: 'GET',
@@ -16,7 +17,7 @@ const options = {
       'tiers[0]': '1',
       orderBy: 'marketCap',
       orderDirection: 'desc',
-      limit: '10',
+      limit: '20',
       offset: '0'
     },
     headers: {
@@ -41,14 +42,12 @@ const [cryptos] = useState();
 
     console.log(cryptosList)
 
-
   return (
     <>
-     
       <Row gutter ={[20, 20]} className="crypto-card-container">
         {cryptosList.data.coins.map((currency) => (
           <Col xs={24} sm={12} lg={6} className="crypto-card" key={currency.id}>
-            <Link key={currency.id} to={`/crypto/${currency.id}`}>
+            <Link to={`/crypto/${currency.uuid}`}>
               <Card
                 title={`${currency.rank}. ${currency.name}`}
                 extra={<img className="crypto-image" src={currency.iconUrl} />}
@@ -64,31 +63,6 @@ const [cryptos] = useState();
       </Row>
     </>
   )
-
-
-
-
-
-
-     return (
-        <Row gutter ={[20, 20]} className="crypto-card-container">
-        {cryptos.map((currency) => (
-          <Col xs={24} sm={12} lg={6} className="crypto-card" key={currency.id}>
-            <Link key={currency.id} to={`/crypto/${currency.id}`}>
-              <Card
-                title={`${currency.rank}. ${currency.name}`}
-                extra={<img className="crypto-image" src={currency.iconUrl} />}
-                hoverable
-              >
-                <p>Price: {millify(currency.price)}</p>
-                <p>Market Cap: {millify(currency.marketCap)}</p>
-                <p>Daily Change: {millify(currency.change)}%</p>
-              </Card>
-            </Link>
-          </Col>
-        ))}
-      </Row>
-     ) 
 }
 
 export default Cryptocurrencies 

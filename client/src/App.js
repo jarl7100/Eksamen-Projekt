@@ -5,6 +5,8 @@ import News from './components/News';
 import Signup from './components/Signup';
 import Signin from './components/Signin';
 import Mypage from './components/Mypage';
+import Home from './components/Home';
+import CryptoDetails from './components/CryptoDetails';
 import Cryptostats from './components/Cryptostats';
 import { Route, Routes } from 'react-router-dom';
 import { Toolbar } from '@mui/material';
@@ -20,12 +22,14 @@ function App() {
         <Toolbar />
         <div className='container'>
           <Routes>
+          <Route path='/' element={<Home />} />
             <Route path='/cryptos' element={<Cryptocurrencies />} />
             <Route path='/news' element={<News />} />
             <Route path='/cryptostats' element={<Cryptostats />} />
             <Route path='/Signup' element={<Signup />} />
             <Route path='/Signin' element={<Signin />} />
             <Route path='/Mypage' element={<Mypage />} />
+            <Route path='/crypto/:coinId' element={<CryptoDetails />} />
           </Routes>
         </div>
       </QueryClientProvider>

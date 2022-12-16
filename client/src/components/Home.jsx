@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardMedia, Typography, CardActionArea } from '@mui/material';
+import {Box} from '@mui/material';
+import homePageImage from '../images/Tech Tech Website in Blue Cyan White Classy Neons Style (2).png'
 
-export default function News() {
-    return <h1>Home</h1>
+export default function Home() {
+    return (
+        <Box
+        component="img"
+        sx={{
+          height: '100%',
+          width: '100%',
+        }}
+        src={homePageImage}
+      />
+    )
 }
