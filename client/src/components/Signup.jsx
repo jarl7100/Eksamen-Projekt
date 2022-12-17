@@ -111,7 +111,6 @@ export const Signup = () => {
                                 <Link href="/signin" variant="body2">
                                     Already have an account? Sign in
                                 </Link>
-                               <p>message</p>
                             </Grid>
                         </Grid>
                     </Box>
