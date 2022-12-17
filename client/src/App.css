@@ -1,29 +1,29 @@
-.crypto-card-container{
+.card-container-crypto{
     min-height: 65vh !important;
 }
-.crypto-card{
+.card-crypto{
     min-width: 250px;
 }
-.crypto-card .crypto-image{
+.card-crypto .image-crypto{
     width:35px;
 }
 
-.news-card{
+.card-news{
     min-height: 300px !important;
 }
-.news-image-container{
+.image-container-news{
     display: flex !important;
     justify-content: space-between !important;
 }
-.news-title{
+.title-news{
 width: 70%;
 }
 
-.news-image-container .img{
+.image-container-news .img{
     width:100px;
     height:100px;
 }
-.news-card p{
+.card-news p{
     color: black;
     margin: 10px 0px !important;
 }

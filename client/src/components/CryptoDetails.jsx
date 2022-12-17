@@ -45,9 +45,8 @@ const CryptoDetails = ()  => {
       </Row>   
       <Row>
       <Typography pt={10} variant="h5" className="heading">A describtion of {cryptoDetails.data.coin.name}:</Typography>
-     {HTMLReactParser(cryptoDetails.data.coin.description)}
-
       </Row>
+      {HTMLReactParser(cryptoDetails.data.coin.description)}
       </>
          )
 }

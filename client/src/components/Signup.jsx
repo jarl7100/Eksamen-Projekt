@@ -2,58 +2,59 @@ import React, { useState, useEffect } from 'react';
 import { Avatar, CssBaseline, FormControlLabel, Checkbox, Link, Grid, Box, Button, TextField, Typography, Container } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import axios from "axios";
+
+import { log } from 'util';
+
 const theme = createTheme();
-
-/*   const [backendData, setBackendData] = useState([{}])
- 
-  useEffect(() => {
-    fetch("/api").then(
-      res => res.json())
-      .then(
-        data => {
-        setBackendData(data)
-        }
-      )
-}, []) */
-
-/* const registerUser = async (username, password) => {
-    console.log("registering user:" + username + " " + password)
-    let data = {
-
-        "username": "thomas",
-        "password": "password"
-    }
-    let json = JSON.stringify(data)
-    console.log("json:" + json)
-    useEffect(() => {
-     fetch('http://localhost:8080/register', {
-        method: 'POST',
-        mode: 'no-cors',    
-       // this cannot be 'no-cors'
-      
-        body: json,
-
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            console("register done")
-
-        })
-        .catch((err) => {
-            console.log("error...")
-            console.log(err.message);
-        });
-    }, [])
-}; */
+const baseurl = "http://localhost:8080"
+var message = ""
 
 
 export const Signup = () => {
+    
+    const registerUser = async (username, password) => {
+
+        console.log("registering user:" + username + " " + password)
+        
+        let loginData = {
+    
+            "username": username,
+            "password": password
+        }
+        let jsonData = JSON.stringify(loginData)
+        var config = {
+            method: 'POST',
+            url: 'http://localhost:8080/register',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            data: jsonData
+        };
+    
+        console.log("json:" + jsonData)
+    
+        axios(config)
+            .then((response) => response.json())
+            .then((data) => {
+                console("register done")
+            })
+            .catch((err) => {
+                console.log("error...")
+            });
+    
+    };
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-     //   registerUser(data.get("username"), data.get("password"))
+        registerUser(data.get("username"), data.get("password"))
     };
+
+    if( message != ""){
+        return <p>message</p>
+    }
 
     return (
         <ThemeProvider theme={theme}>
@@ -106,14 +107,18 @@ export const Signup = () => {
                             Sign Up
                         </Button>
                         <Grid container justifyContent="flex-end">
-                            <Grid item>
+                            <Grid>
                                 <Link href="/signin" variant="body2">
                                     Already have an account? Sign in
                                 </Link>
+                               <p>message</p>
                             </Grid>
                         </Grid>
                     </Box>
                 </Box>
+                <div>
+               
+                </div>
             </Container>
         </ThemeProvider>
     )

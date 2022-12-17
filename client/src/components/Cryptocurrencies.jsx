@@ -44,13 +44,13 @@ const [cryptos] = useState();
 
   return (
     <>
-      <Row gutter ={[20, 20]} className="crypto-card-container">
+      <Row gutter ={[20, 20]} className="container-crypto">
         {cryptosList.data.coins.map((currency) => (
-          <Col xs={24} sm={12} lg={6} className="crypto-card" key={currency.id}>
+          <Col xs={24} sm={12} lg={6} className="card-crypto" key={currency.id}>
             <a href={`/crypto/${currency.uuid}`}>
               <Card
                 title={`${currency.rank}. ${currency.name}`}
-                extra={<img className="crypto-image" src={currency.iconUrl} />}
+                extra={<img className="image-crypto" src={currency.iconUrl} />}
                 hoverable
               >
                 <p>Price: {millify(currency.price)}</p>
@@ -66,60 +66,3 @@ const [cryptos] = useState();
 }
 
 export default Cryptocurrencies 
-
-{/* <Box sx={{ width: '100%' }}>
-<Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-  <Grid item xs={6}>
-        <Card sx={{ maxWidth: 250, maxHeight: "auto", borderRadius: '16px' }}>
-        <CardActionArea style={{}}>
-            <CardMedia
-                component="img"
-                image= {data.data.coins[0].iconUrl}
-                height="140"
-                width="10"
-                sx={{ width: 100, height: 100, margin: 'auto' }}
-            />
-            <CardContent>
-                <Typography gutterBottom variant="h6" component="div">
-                {data.data.coins[0].name}
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                Price: {millify(data.data.coins[0].price)}
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                Market Cap: {millify(data.data.coins[0].marketCap)}
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                Daily change: {millify(data.data.coins[0].change)}%
-                </Typography>
-            </CardContent>
-        </CardActionArea>
-        </Card>
-        <Card sx={{ maxWidth: 250, maxHeight: "auto", borderRadius: '16px' }}>
-        <CardActionArea style={{}}>
-            <CardMedia
-                component="img"
-                image= {data.data.coins[1].iconUrl}
-                height="140"
-                width="10"
-                sx={{ width: 100, height: 100, margin: 'auto' }}
-            />
-            <CardContent>
-                <Typography gutterBottom variant="h6" component="div">
-                {data.data.coins[1].name}
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                Price: {millify(data.data.coins[1].price)}
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                Market Cap: {millify(data.data.coins[1].marketCap)}
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                Daily change: {millify(data.data.coins[1].change)}%
-                </Typography>
-            </CardContent>
-        </CardActionArea>
-        </Card>
-  </Grid>
-</Grid>
-</Box> */}

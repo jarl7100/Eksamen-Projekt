@@ -35,10 +35,10 @@ export default function News() {
         {cryptoNews.value.map((news, i) => (
 
           <Col xs={24} sm={12} lg={8} key={i}>
-            <Card hoverable className="news-card">
+            <Card hoverable className="card-news">
               <a href={news.url} target = "_Blank" rel="noreferrer">
-                <div className='news-image-container'>
-                  <Typography className='news-title' variant="h6"> {news.name}</Typography>
+                <div className='image-container-news'>
+                  <Typography className='title-news' variant="h6"> {news.name}</Typography>
                   {news.image
                         ?<img style={{maxWidth: "200px", maxHeight: "100px"}}src={news.image.thumbnail.contentUrl } alt="news"/> 
                         : <img style={{maxWidth: "200px", maxHeight: "100px"}}src={demoImage} alt="news"/>
