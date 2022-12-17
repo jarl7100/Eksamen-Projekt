@@ -116,9 +116,6 @@ export const Signup = () => {
                         </Grid>
                     </Box>
                 </Box>
-                <div>
-               
-                </div>
             </Container>
         </ThemeProvider>
     )
