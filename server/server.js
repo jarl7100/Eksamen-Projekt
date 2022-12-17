@@ -68,6 +68,7 @@ app.post('/register', async (req, res) => {
     return
   }
     addUserToDatabase(req.body.username, hashPassword(req.body.password))
+    console.log('user registered successfully')
 	res.status(200).send('OK')
 })
 

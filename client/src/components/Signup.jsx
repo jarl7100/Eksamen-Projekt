@@ -35,12 +35,14 @@ export const Signup = () => {
         console.log("json:" + jsonData)
     
         axios(config)
-            .then((response) => response.json())
-            .then((data) => {
-                console("register done")
+            .then(function (response) {
+                console.log("register done")
+                window.location.href = '/mypage';
             })
             .catch((err) => {
-                console.log("error...")
+                console.log(err)
+                message = "Username already exists"
+                alert(message)
             });
     
     };
