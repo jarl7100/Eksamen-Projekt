@@ -41,7 +41,7 @@ export const Signup = () => {
             })
             .catch((err) => {
                 console.log(err)
-                message = "Username already exists"
+                message = "Der er opstået en fejl"
                 alert(message)
             });
     

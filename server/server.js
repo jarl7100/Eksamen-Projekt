@@ -5,13 +5,18 @@ const port = 8080
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./db.sqlite');
 var crypto = require('crypto');
-
+const https = require("https"), fs = require("fs");
 const cors = require('cors');    
 app.use(cors());
 
 app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
 app.use(express.json({limit:'1mb'}))
+
+const options = {
+  key: fs.readFileSync("./server.key"),
+  cert: fs.readFileSync("./server.cert")
+};
 
 db.serialize(function() {
     console.log('creating databases if they don\'t exist');
@@ -31,7 +36,6 @@ db.serialize(function() {
   }
 
   const getUserByUsername = (userName) => {
-    // Smart måde at konvertere fra callback til promise:
     return new Promise((resolve, reject) => {  
       db.all(
         'select * from users where userName=(?)',
@@ -72,7 +76,14 @@ app.post('/register', async (req, res) => {
 	res.status(200).send('OK')
 })
 
+app.use((req, res) => {
+  res.writeHead(200);
+  res.end("hello world\n");
+});
 
 app.listen(port, () => {
 	console.log(`Example app listening at http://localhost:${port}`)
 })
+
+
+https.createServer(options, app).listen(8443);

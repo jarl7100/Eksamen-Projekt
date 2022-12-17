@@ -28,7 +28,6 @@ const options = {
 
 // Her laves en Cryptocurrencies komponent som bliver brugt i App.jsx
 export const Cryptocurrencies = () => {
-const [cryptos] = useState();
 
 // Der laves en query til Coinranking API med Axios og der bliver også lavet en isLoading state
     const { data:cryptosList,isLoading } = useQuery([], () => {

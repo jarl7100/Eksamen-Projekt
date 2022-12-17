@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Cryptocurrencies from './components/Cryptocurrencies';
 import Navbar from './components/Navbar';
 import News from './components/News';
@@ -38,3 +38,4 @@ function App() {
 }
 
 export default App
+
