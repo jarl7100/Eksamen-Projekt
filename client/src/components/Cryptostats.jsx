@@ -26,7 +26,7 @@ const options = {
   
 export default function Cryptostats() {
 
-     const { data,isLoading } = useQuery([], () => {
+     const { data:cryptoStats,isLoading } = useQuery([], () => {
         return Axios.request(options).then((res) => res.data);
      });
 
@@ -36,14 +36,14 @@ export default function Cryptostats() {
     
     return (
         <>
-        <Typography variant="h4" className="heading">Global Crypto Stats</Typography>
+        <Typography pb={2} variant="h4" className="heading">Global Crypto Stats</Typography>
         <Row>
-        <Col span={12}><Statistic title="Total Cryptocurrencies" value={data.data.stats.total} /></Col>
-        <Col span={12}><Statistic title="Total Exchanges" value={millify(data.data.stats.totalExchanges)} /></Col>
-        <Col span={12}><Statistic title="Total Market Cap:" value={`$${millify(data.data.stats.totalMarketCap)}`} /></Col>
-        <Col span={12}><Statistic title="Total 24h Volume" value={`$${millify(data.data.stats.total24hVolume)}`} /></Col>
-        <Col span={12}><Statistic title="Total Cryptocurrencies" value={data.data.stats.total} /></Col>
-        <Col span={12}><Statistic title="Total Markets" value={millify(data.data.stats.totalMarkets)} /></Col>
+        <Col span={12}><Statistic title="Total Cryptocurrencies" value={cryptoStats.data.stats.total} /></Col>
+        <Col span={12}><Statistic title="Total Exchanges" value={millify(cryptoStats.data.stats.totalExchanges)} /></Col>
+        <Col span={12}><Statistic title="Total Market Cap:" value={`$${millify(cryptoStats.data.stats.totalMarketCap)}`} /></Col>
+        <Col span={12}><Statistic title="Total 24h Volume" value={`$${millify(cryptoStats.data.stats.total24hVolume)}`} /></Col>
+        <Col span={12}><Statistic title="Total Cryptocurrencies" value={cryptoStats.data.stats.total} /></Col>
+        <Col span={12}><Statistic title="Total Markets" value={millify(cryptoStats.data.stats.totalMarkets)} /></Col>
         </Row>
         </>
      ) 

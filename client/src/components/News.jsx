@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Select, Typography, Row, Col, Avatar, Card } from 'antd'
+import { Select, Row, Col, Avatar, Card } from 'antd'
+import Typography from '@mui/material/Typography';
 import moment from 'moment'
 import { useQuery } from '@tanstack/react-query';
 import Axios from 'axios';
@@ -37,7 +38,7 @@ export default function News() {
             <Card hoverable className="news-card">
               <a href={news.url} target = "_Blank" rel="noreferrer">
                 <div className='news-image-container'>
-                  <Typography className='news-title' level={1}> {news.name}</Typography>
+                  <Typography className='news-title' variant="h6"> {news.name}</Typography>
                   {news.image
                         ?<img style={{maxWidth: "200px", maxHeight: "100px"}}src={news.image.thumbnail.contentUrl } alt="news"/> 
                         : <img style={{maxWidth: "200px", maxHeight: "100px"}}src={demoImage} alt="news"/>
@@ -51,7 +52,7 @@ export default function News() {
                         ?<Avatar style={{maxWidth: "200px", maxHeight: "100px"}}src={news.provider[0].image.thumbnail.contentUrl } alt="news"/> 
                         : <Avatar style={{maxWidth: "200px", maxHeight: "100px"}}src={demoImage} alt="news"/>
                   }
-                  <Typography className='provider-name'>{news.provider[0].name}</Typography>
+                  <Typography className='provider-name' variant="body1">{news.provider[0].name}</Typography>
                 </div> 
                 <Typography>{moment(news.datePublished).startOf('ss').fromNow()}</Typography>
                 </a>

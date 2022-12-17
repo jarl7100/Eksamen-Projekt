@@ -38,15 +38,3 @@ function App() {
 }
 
 export default App
-
-/*   const [backendData, setBackendData] = useState([{}])
- 
-  useEffect(() => {
-    fetch("/api").then(
-      res => res.json())
-      .then(
-        data => {
-        setBackendData(data)
-        }
-      )
-}, []) */

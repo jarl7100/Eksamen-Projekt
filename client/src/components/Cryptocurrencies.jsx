@@ -17,7 +17,7 @@ const options = {
       'tiers[0]': '1',
       orderBy: 'marketCap',
       orderDirection: 'desc',
-      limit: '20',
+      limit: '100',
       offset: '0'
     },
     headers: {
@@ -47,7 +47,7 @@ const [cryptos] = useState();
       <Row gutter ={[20, 20]} className="crypto-card-container">
         {cryptosList.data.coins.map((currency) => (
           <Col xs={24} sm={12} lg={6} className="crypto-card" key={currency.id}>
-            <Link to={`/crypto/${currency.uuid}`}>
+            <a href={`/crypto/${currency.uuid}`}>
               <Card
                 title={`${currency.rank}. ${currency.name}`}
                 extra={<img className="crypto-image" src={currency.iconUrl} />}
@@ -57,7 +57,7 @@ const [cryptos] = useState();
                 <p>Market Cap: {millify(currency.marketCap)}</p>
                 <p>Daily Change: {millify(currency.change)}%</p>
               </Card>
-            </Link>
+            </a>
           </Col>
         ))}
       </Row>

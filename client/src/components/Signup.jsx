@@ -4,17 +4,56 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 const theme = createTheme();
 
+/*   const [backendData, setBackendData] = useState([{}])
+ 
+  useEffect(() => {
+    fetch("/api").then(
+      res => res.json())
+      .then(
+        data => {
+        setBackendData(data)
+        }
+      )
+}, []) */
+
+/* const registerUser = async (username, password) => {
+    console.log("registering user:" + username + " " + password)
+    let data = {
+
+        "username": "thomas",
+        "password": "password"
+    }
+    let json = JSON.stringify(data)
+    console.log("json:" + json)
+    useEffect(() => {
+     fetch('http://localhost:8080/register', {
+        method: 'POST',
+        mode: 'no-cors',    
+       // this cannot be 'no-cors'
+      
+        body: json,
+
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            console("register done")
+
+        })
+        .catch((err) => {
+            console.log("error...")
+            console.log(err.message);
+        });
+    }, [])
+}; */
+
+
 export const Signup = () => {
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-        firstName: data.get('firstName'),
-        lastName: data.get('lastName'),
-          username: data.get('userName'),
-          password: data.get('password'),
-        });
-      };
+     //   registerUser(data.get("username"), data.get("password"))
+    };
 
     return (
         <ThemeProvider theme={theme}>
@@ -36,34 +75,13 @@ export const Signup = () => {
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    autoComplete="fname"
-                                    name="firstName"
-                                    required
-                                    fullWidth
-                                    id="firstName"
-                                    label="First Name"
-                                    autoFocus
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="lastName"
-                                    label="Last Name"
-                                    name="lastName"
-                                    autoComplete="lname"
-                                />
-                            </Grid>
                             <Grid item xs={12}>
                                 <TextField
                                     required
                                     fullWidth
-                                    id="userName"
+                                    id="username"
                                     label="Username"
-                                    name="userName"
+                                    name="username"
                                     autoComplete="uname"
                                 />
                             </Grid>

@@ -8,20 +8,17 @@ const Navbar = () => {
     const [value, setValue] = useState();
     return (
         <React.Fragment>
-            <AppBar sx={{ background: '#063970' } }>
+            <AppBar sx={{ background: '#063970' }}>
                 <Toolbar>
-                <a href="/">
-    <Avatar 
-    sx={{ width: 'auto', height: 50, marginRight: "20px"}}
-    variant='square'
-    src={menuIcon} />
-</a>
-                   
-                   
-                   
-                    <Tabs textColor="inherit" value={value} onChange={(e,value) => setValue(value)} indicatorColor="primary" >
-                        <Tab label="Cryptos" href='/cryptos'/>
-                        <Tab label="News" href='/news'/>
+                    <a href="/">
+                        <Avatar
+                            sx={{ width: 'auto', height: 50, marginRight: "20px" }}
+                            variant='square'
+                            src={menuIcon} />
+                    </a>
+                    <Tabs textColor="inherit" value={value} onChange={(e, value) => setValue(value)} indicatorColor="primary" >
+                        <Tab label="Cryptos" href='/cryptos' />
+                        <Tab label="News" href='/news' />
                         <Tab label="Crypto stats" href='cryptostats' />
                         <Tab label="My page" href='mypage' />
                     </Tabs>
