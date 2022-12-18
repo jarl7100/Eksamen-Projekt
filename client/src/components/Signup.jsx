@@ -3,6 +3,7 @@ import { Avatar, CssBaseline, FormControlLabel, Checkbox, Link, Grid, Box, Butto
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import axios from "axios";
+import {useGlobalState} from "../GlobalState.js"
 
 import { log } from 'util';
 
@@ -11,8 +12,10 @@ const baseurl = "http://localhost:8080"
 var message = ""
 
 
-export const Signup = () => {
-    
+export const Signup = (props) => {
+
+    const [globalState, updateGlobalState] = useGlobalState()
+
     const registerUser = async (username, password) => {
 
         console.log("registering user:" + username + " " + password)
@@ -37,7 +40,11 @@ export const Signup = () => {
         axios(config)
             .then(function (response) {
                 console.log("register done")
-                window.location.href = '/mypage';
+               
+                console.log("update global state");
+                updateGlobalState("loggedIn", true);
+                console.log("update global state ok");
+                //window.location.href = '/mypage';
             })
             .catch((err) => {
                 console.log(err)
@@ -46,6 +53,8 @@ export const Signup = () => {
             });
     
     };
+
+
 
 
     const handleSubmit = (event) => {

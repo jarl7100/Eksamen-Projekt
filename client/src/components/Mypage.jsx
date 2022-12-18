@@ -1,25 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
+import { Signup } from './Signup';
+import { useGlobalState } from '../GlobalState';
 
 
-export default function Mypage() {
+export default function Mypage(props) {
 
-
-    const [ifSignedIn, displaySignedIn] = useState(<h1>sign in or sign up to see My page</h1>)
     
-        const changeOnSignIn = () => {
-            displaySignedIn(            
-            <h1>Here are some cool cryptoscurrencyes and news stories for you (navn):</h1>,
-            )
-        }
-
+    const [globalState] = useGlobalState()
 
     return (
         <div>
-                    {ifSignedIn}
-        <Button variant="outlined" onClick={changeOnSignIn}>
-            Click
-        </Button>
+            {globalState.loggedIn
+                ? <h1>Here are some cool cryptoscurrencyes and news stories for you (navn):</h1>
+                : <h1>sign in or sign up to see My page</h1>
+                }
         </div>
 
     )
