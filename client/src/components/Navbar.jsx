@@ -4,12 +4,8 @@ import { AppBar, Toolbar, Typography, Button, IconButton, Tab, Tabs, Avatar } fr
 import menuIcon from '../images/cbs-crypto-hub-low-resolution-logo-white-on-transparent-background.png'
 
 const Navbar = () => {
-
-
     const [value, setValue] = useState();
-
     const [loggedIn, setLoggedIn] = useState(false);
-
     const [items, setItems] = useState([]);
 
     useEffect(() => {
@@ -19,13 +15,16 @@ const Navbar = () => {
         }
     }, []);
 
+    useEffect(() => {
+        window.localStorage.setItem('loggedIn', loggedIn);
+    }, [loggedIn]);
 
     const logout = async () => {
         console.log("logout user:")
         setLoggedIn(false)
+
         window.location.href = '/';
     };
-
 
     return (
         <React.Fragment>
@@ -64,6 +63,4 @@ const Navbar = () => {
     );
 }
 
-
 export default Navbar;
-

@@ -3,35 +3,25 @@ import { Avatar, CssBaseline, FormControlLabel, Checkbox, Link, Grid, Box, Butto
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import axios from "axios";
-
 import { log } from 'util';
 
 const theme = createTheme();
 const baseurl = "http://localhost:8080"
-var message = ""
-
-
+´
 export function Signup(props) {
-
     const [loggedIn, setLoggedIn] = useState(false);
 
     useEffect(() => {
         window.localStorage.setItem('loggedIn', loggedIn);
     }, [loggedIn]);
 
-
     useEffect(() => {
         setLoggedIn(JSON.parse(window.localStorage.getItem('loggedIn')));
     }, []);
 
-
-
     const registerUser = async (username, password) => {
-
         console.log("registering user:" + username + " " + password)
-
         let loginData = {
-
             "username": username,
             "password": password
         }
@@ -60,18 +50,13 @@ export function Signup(props) {
                 message = "Der er opstået en fejl"
                 alert(message)
             });
-
     };
-
-
-
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         registerUser(data.get("username"), data.get("password"))
     };
-
 
     return (
         <ThemeProvider theme={theme}>
@@ -138,18 +123,3 @@ export function Signup(props) {
 }
 
 export default Signup
-
-
-{/* <div>
-<form>
-    <Box display="flex" flexDirection={"column"} maxWidth={400} alignItems="center" justifyContent={"center"} margin="auto" marginTop={5} padding={3} borderRadius = {5} boxShadow = {'5px 5px 10px #ccc'} sx={{}}>
-        <Typography>
-            Sign up
-        </Typography>
-        <TextField />
-        <TextField />
-        <TextField />
-        <Button> Sign up </Button>
-    </Box>
-</form>
-</div> */}
