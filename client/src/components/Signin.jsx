@@ -4,6 +4,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import axios from "axios";
 import { log } from 'util';
+import { userInfo } from 'os';
 
 const theme = createTheme();
 
@@ -20,7 +21,7 @@ export function Signin(props) {
     }, []);
 
     const registerUser = async (username, password) => {
-        console.log("registering user:" + username + " " + password)
+        console.log("login user:" + username + " " + password)
         let loginData = {
             "username": username,
             "password": password
@@ -28,7 +29,7 @@ export function Signin(props) {
         let jsonData = JSON.stringify(loginData)
         var config = {
             method: 'POST',
-            url: 'https://localhost:8443/register',
+            url: 'https://localhost:8443/signin',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -39,8 +40,8 @@ export function Signin(props) {
 
         axios(config)
             .then(function (response) {
-                console.log("register done")
-                setLoggedIn(true)
+                console.log("login done")
+                setLoggedIn(username)
 
                 window.location.href = '/mypage';
             })

@@ -22,20 +22,14 @@ const Navbar = () => {
 
     const logout = async () => {
         console.log("logout user:")
-        setLoggedIn("")
-        let loginData = {
-        }
-        let jsonData = JSON.stringify(loginData)
+
         var config = {
             method: 'POST',
             url: 'http://localhost:8080/logout',
             headers: {
                 'Content-Type': 'application/json',
             },
-            data: jsonData
         };
-
-        console.log("json:" + jsonData)
 
         axios(config)
             .then(function (response) {
