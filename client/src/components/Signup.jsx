@@ -6,7 +6,6 @@ import axios from "axios";
 import { log } from 'util';
 
 const theme = createTheme();
-const baseurl = "http://localhost:8080"
 
 export function Signup(props) {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -28,7 +27,7 @@ export function Signup(props) {
         let jsonData = JSON.stringify(loginData)
         var config = {
             method: 'POST',
-            url: 'http://localhost:8080/register',
+            url: 'https://localhost:8443/register',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -110,7 +109,7 @@ export function Signup(props) {
                         <Grid container justifyContent="flex-end">
                             <Grid>
                                 <Link href="/signin" variant="body2">
-                                    Already have an account? Sign in
+                                    Already have an account? Sign in here
                                 </Link>
                             </Grid>
                         </Grid>

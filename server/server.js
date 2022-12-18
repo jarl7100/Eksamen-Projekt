@@ -6,91 +6,109 @@ const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./db.sqlite');
 var crypto = require('crypto');
 const https = require("https"), fs = require("fs");
-const cors = require('cors');    
+const cors = require('cors');
 app.use(cors());
 
 app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
-app.use(express.json({limit:'1mb'}))
+app.use(express.json({ limit: '1mb' }))
 
 const options = {
   key: fs.readFileSync("./server.key"),
   cert: fs.readFileSync("./server.cert")
 };
 
-db.serialize(function() {
-    console.log('creating databases if they don\'t exist');
-    db.run('create table if not exists users (userId integer primary key, username text not null, password text not null)');
-  });
+db.serialize(function () {
+  console.log('creating databases if they don\'t exist');
+  db.run('create table if not exists users (userId integer primary key, username text not null, password text not null)');
+});
 
-  const addUserToDatabase = (username, password) => {
-    db.run(
-      'insert into users (username, password) values (?, ?)', 
-      [username, password], 
-      function(err) {
+const addUserToDatabase = (username, password) => {
+  db.run(
+    'insert into users (username, password) values (?, ?)',
+    [username, password],
+    function (err) {
+      if (err) {
+        console.error(err);
+      }
+    }
+  );
+}
+
+const getUserByUsername = (userName) => {
+  return new Promise((resolve, reject) => {
+    db.all(
+      'select * from users where userName=(?)',
+      [userName],
+      (err, rows) => {
         if (err) {
           console.error(err);
+          return reject(err);
         }
+        return resolve(rows);
       }
     );
-  }
-
-  const getUserByUsername = (userName) => {
-    return new Promise((resolve, reject) => {  
-      db.all(
-        'select * from users where userName=(?)',
-        [userName], 
-        (err, rows) => {
-          if (err) {
-            console.error(err);
-            return reject(err);
-          }
-          return resolve(rows);
-        }
-      );
-    })
-  }
-
-  const hashPassword = (password) => {
-    const md5sum = crypto.createHash('md5');
-    const salt = 'salt goes here';
-    return md5sum.update(password + salt).digest('hex');
-  }
-
-
-  app.post('/logout', async (req, res) => {
-    console.log('/logout called' )
-    console.log(req.body)
-
-    res.status(200).send('OK')
   })
+}
 
+const hashPassword = (password) => {
+  const md5sum = crypto.createHash('md5');
+  const salt = 'salt goes here';
+  return md5sum.update(password + salt).digest('hex');
+}
+
+
+app.post('/logout', async (req, res) => {
+  console.log('/logout called')
+  console.log(req.body)
+  res.status(200).send('OK')
+})
 
 app.post('/register', async (req, res) => {
   const user = await getUserByUsername(req.body.username);
-  console.log('/register called' )
-	console.log(req.body)
+  console.log('/register called')
+  console.log(req.body)
   if (req.body.username == null) {
     res.status(400).send('Wrong username')
     return
-  }    
-    if (user.length > 0) {
+  }
+  if (user.length > 0) {
     res.status(400).send('Username already exists');
     return
   }
-    addUserToDatabase(req.body.username, hashPassword(req.body.password))
-    console.log('user registered successfully')
-	res.status(200).send('OK')
+  addUserToDatabase(req.body.username, hashPassword(req.body.password))
+  console.log('user registered successfully')
+  res.status(200).send('OK')
+})
+
+app.post('/signin', async (req, res) => {
+  const user = await getUserByUsername(req.body.username);
+  console.log('/signin called')
+  console.log(req.body)
+  if (req.body.username == null) {
+    res.status(400).send('Wrong username')
+    return
+  }
+  if (user.length == 0) {
+    res.status(400).send('Username does not exist');
+    return
+  }
+  if (user[0].password != hashPassword(req.body.password)) {
+    res.status(400).send('Wrong password');
+    return
+  }
+  console.log('user logged in successfully')
+  res.status(200).send('OK')
 })
 
 app.use((req, res) => {
   res.writeHead(200);
-  res.end("hello world\n");
 });
 
 app.listen(port, () => {
-	console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Example app listening at http://localhost:${port}`)
 })
+
 
 
 https.createServer(options, app).listen(8443);

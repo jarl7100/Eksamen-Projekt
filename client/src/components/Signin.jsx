@@ -2,10 +2,60 @@ import React, { useState, useEffect } from 'react';
 import { Avatar, CssBaseline, FormControlLabel, Checkbox, Link, Grid, Box, Button, TextField, Typography, Container } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import axios from "axios";
+import { log } from 'util';
 
 const theme = createTheme();
 
-export const Signin = () => {
+export function Signin(props) {
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+        window.localStorage.setItem('loggedIn', loggedIn);
+    }, [loggedIn]);
+
+    useEffect(() => {
+        setLoggedIn(JSON.parse(window.localStorage.getItem('loggedIn')));
+    }, []);
+
+    const registerUser = async (username, password) => {
+        console.log("registering user:" + username + " " + password)
+        let loginData = {
+            "username": username,
+            "password": password
+        }
+        let jsonData = JSON.stringify(loginData)
+        var config = {
+            method: 'POST',
+            url: 'https://localhost:8443/register',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            data: jsonData
+        };
+
+        console.log("json:" + jsonData)
+
+        axios(config)
+            .then(function (response) {
+                console.log("register done")
+
+                setLoggedIn(true)
+
+                window.location.href = '/mypage';
+            })
+            .catch((err) => {
+                console.log(err)
+                alert( "Der er opstået en fejl")
+            });
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        registerUser(data.get("username"), data.get("password"))
+    };
+
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
@@ -24,7 +74,7 @@ export const Signin = () => {
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
-                    <Box component="form" noValidate sx={{ mt: 3 }}>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
@@ -57,9 +107,9 @@ export const Signin = () => {
                             Sign in
                         </Button>
                         <Grid container justifyContent="flex-end">
-                            <Grid item>
+                            <Grid>
                                 <Link href="/signup" variant="body2">
-                                    Don't have an account? Sign up
+                                    Don't have have an account? Sign up here
                                 </Link>
                             </Grid>
                         </Grid>
@@ -70,4 +120,4 @@ export const Signin = () => {
     )
 }
 
-export default Signin
+export default Signin;
