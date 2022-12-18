@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button, IconButton, Tab, Tabs, Avatar } from '@mui/material';
 import menuIcon from '../images/cbs-crypto-hub-low-resolution-logo-white-on-transparent-background.png'
-
+import { GlobalState } from '../GlobalState';
 
 
 const Navbar = () => {

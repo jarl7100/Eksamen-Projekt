@@ -14,6 +14,14 @@ export const GlobalState = props => {
 // declare the GlobalState
 const [globalState, setGlobalState] = useState({})
 
+const getGlobalState = (key) => {
+  setGlobalState(oldState => {
+    const val = oldState[key]
+    console.log("state " + val )
+    return val  
+  })
+}
+
 // create a function that'll make it easy to update one state property at a time
 const updateGlobalState = (key, newValue) => {
   setGlobalState(oldState => {
@@ -30,7 +38,7 @@ const updateGlobalState = (key, newValue) => {
 }
 
 return (
-  <GlobalContext.Provider value={[globalState, updateGlobalState]}>{props.children}</GlobalContext.Provider>
+  <GlobalContext.Provider value={[globalState, updateGlobalState, getGlobalState]}>{props.children}</GlobalContext.Provider>
 )
 }
 

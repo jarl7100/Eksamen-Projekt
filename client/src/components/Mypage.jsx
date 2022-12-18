@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from "react";
+
 import { Button } from '@mui/material';
 import { Signup } from './Signup';
-import { useGlobalState } from '../GlobalState';
+
 
 
 export default function Mypage(props) {
-
-    
-    const [globalState] = useGlobalState()
+   
+    console.log("globalState.loggedIn:" + window.localStorage.getItem('loggedIn'))
 
     return (
         <div>
-            {globalState.loggedIn
+            {window.localStorage.getItem('loggedIn')
                 ? <h1>Here are some cool cryptoscurrencyes and news stories for you (navn):</h1>
                 : <h1>sign in or sign up to see My page</h1>
                 }

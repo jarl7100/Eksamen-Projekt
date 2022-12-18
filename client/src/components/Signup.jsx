@@ -3,7 +3,6 @@ import { Avatar, CssBaseline, FormControlLabel, Checkbox, Link, Grid, Box, Butto
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import axios from "axios";
-import {useGlobalState} from "../GlobalState.js"
 
 import { log } from 'util';
 
@@ -12,16 +11,27 @@ const baseurl = "http://localhost:8080"
 var message = ""
 
 
-export const Signup = (props) => {
+export function Signup(props) {
 
-    const [globalState, updateGlobalState] = useGlobalState()
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+        window.localStorage.setItem('loggedIn', loggedIn);
+    }, [loggedIn]);
+
+
+    useEffect(() => {
+        setLoggedIn(JSON.parse(window.localStorage.getItem('loggedIn')));
+    }, []);
+
+
 
     const registerUser = async (username, password) => {
 
         console.log("registering user:" + username + " " + password)
-        
+
         let loginData = {
-    
+
             "username": username,
             "password": password
         }
@@ -34,24 +44,23 @@ export const Signup = (props) => {
             },
             data: jsonData
         };
-    
+
         console.log("json:" + jsonData)
-    
+
         axios(config)
             .then(function (response) {
                 console.log("register done")
-               
-                console.log("update global state");
-                updateGlobalState("loggedIn", true);
-                console.log("update global state ok");
-                //window.location.href = '/mypage';
+
+                setLoggedIn(true)
+
+                window.location.href = '/mypage';
             })
             .catch((err) => {
                 console.log(err)
                 message = "Der er opstået en fejl"
                 alert(message)
             });
-    
+
     };
 
 
@@ -63,9 +72,6 @@ export const Signup = (props) => {
         registerUser(data.get("username"), data.get("password"))
     };
 
-    if( message != ""){
-        return <p>message</p>
-    }
 
     return (
         <ThemeProvider theme={theme}>

@@ -13,7 +13,8 @@ import { Toolbar } from '@mui/material';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import './App.css';
 
-function App() {
+
+function App(props) {
   const client = new QueryClient();
   return (
     <>
