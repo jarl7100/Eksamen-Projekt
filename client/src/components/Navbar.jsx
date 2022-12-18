@@ -2,28 +2,31 @@ import React, { useState, useEffect } from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button, IconButton, Tab, Tabs, Avatar } from '@mui/material';
 import menuIcon from '../images/cbs-crypto-hub-low-resolution-logo-white-on-transparent-background.png'
-import { GlobalState } from '../GlobalState';
-
 
 const Navbar = () => {
-    const [signInButton, setSignInButton] = useState(
-    <Button sx={{ marginLeft: "auto" }} variant="outlined" href='/signin' >
-        Sign in
-    </Button>)
 
-    const [signUpButton, setSignUpButton] = useState(
-        <Button sx={{ marginLeft: "10px" }} variant="outlined" href='/signup'>
-            Sign up{" "}
-        </Button>)
-
-    const changeNavButtons = () => {
-        setSignInButton("")
-        setSignUpButton( <Button sx={{ marginLeft: "auto" }} variant="outlined">
-        Log out{" "}
-    </Button>)
-}
 
     const [value, setValue] = useState();
+
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        const status = JSON.parse(localStorage.getItem('loggedIn'));
+        if (status) {
+            setLoggedIn(status);
+        }
+    }, []);
+
+
+    const logout = async () => {
+        console.log("logout user:")
+        setLoggedIn(false)
+        window.location.href = '/';
+    };
+
+
     return (
         <React.Fragment>
             <AppBar sx={{ background: '#063970' }}>
@@ -38,13 +41,23 @@ const Navbar = () => {
                         <Tab label="Cryptos" href='/cryptos' />
                         <Tab label="News" href='/news' />
                         <Tab label="Crypto stats" href='cryptostats' />
-                        <Tab label="My page" href='mypage' />      
+                        <Tab label="My page" href='mypage' />
                     </Tabs>
-                    {signInButton}
-                    {signUpButton}  
-                    <Button sx={{ marginLeft: "10px" }} variant="outlined" onClick={changeNavButtons}>
-                        change nav button
-    </Button>
+                    {loggedIn == true
+                        ?
+                        <Button sx={{ marginLeft: "auto" }} variant="outlined" onClick={logout} >
+                            Logout
+                        </Button>
+                        :
+                        <div>
+                            <Button sx={{ marginLeft: "auto" }} variant="outlined" href='/signup'>
+                                Sign up
+                            </Button>
+                            <Button sx={{ marginLeft: "10px" }} variant="outlined" href='/login'>
+                                sign in
+                            </Button>
+                        </div>
+                    }
                 </Toolbar>
             </AppBar>
         </React.Fragment>

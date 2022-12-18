@@ -58,6 +58,22 @@ db.serialize(function() {
   }
 
 
+  app.post('/logout', async (req, res) => {
+   
+    console.log('/logout called' )
+    console.log(req.body)
+    if (req.body.username == null) {
+      res.status(400).send('Wrong username')
+      return
+    }    
+      if (user.length ==  0) {
+      res.status(400).send('Username doesnt exists');
+      return
+    }
+   
+    res.status(200).send('OK')
+  })
+
 
 app.post('/register', async (req, res) => {
   const user = await getUserByUsername(req.body.username);
