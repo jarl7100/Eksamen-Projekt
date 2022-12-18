@@ -6,11 +6,11 @@ import axios from "axios";
 
 const Navbar = () => {
     const [value, setValue] = useState();
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState("");
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        const status = JSON.parse(localStorage.getItem('loggedIn'));
+        const status = localStorage.getItem('loggedIn');
         if (status) {
             setLoggedIn(status);
         }
@@ -22,7 +22,7 @@ const Navbar = () => {
 
     const logout = async () => {
         console.log("logout user:")
-        setLoggedIn(false)
+        setLoggedIn("")
         let loginData = {
         }
         let jsonData = JSON.stringify(loginData)
@@ -40,7 +40,7 @@ const Navbar = () => {
         axios(config)
             .then(function (response) {
                 console.log("logout done")
-                setLoggedIn(false)
+                setLoggedIn("")
                 window.location.href = '/';
             })
             .catch((err) => {
@@ -66,7 +66,7 @@ const Navbar = () => {
                         <Tab label="Crypto stats" href='cryptostats' />
                         <Tab label="My page" href='mypage' />
                     </Tabs>
-                    {loggedIn == true
+                    {loggedIn !== "" 
                         ?
                         <Button sx={{ marginLeft: "10px" }} variant="outlined" onClick={logout} >
                             Logout

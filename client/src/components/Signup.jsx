@@ -8,14 +8,14 @@ import { log } from 'util';
 const theme = createTheme();
 
 export function Signup(props) {
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState("");
 
     useEffect(() => {
         window.localStorage.setItem('loggedIn', loggedIn);
     }, [loggedIn]);
 
     useEffect(() => {
-        setLoggedIn(JSON.parse(window.localStorage.getItem('loggedIn')));
+        setLoggedIn(window.localStorage.getItem('loggedIn'));
     }, []);
 
     const registerUser = async (username, password) => {
@@ -40,7 +40,7 @@ export function Signup(props) {
             .then(function (response) {
                 console.log("register done")
 
-                setLoggedIn(true)
+                setLoggedIn(username)
 
                 window.location.href = '/mypage';
             })

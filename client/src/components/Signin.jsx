@@ -14,6 +14,7 @@ export function Signin(props) {
         window.localStorage.setItem('loggedIn', loggedIn);
     }, [loggedIn]);
 
+
     useEffect(() => {
         setLoggedIn(JSON.parse(window.localStorage.getItem('loggedIn')));
     }, []);
@@ -39,7 +40,6 @@ export function Signin(props) {
         axios(config)
             .then(function (response) {
                 console.log("register done")
-
                 setLoggedIn(true)
 
                 window.location.href = '/mypage';
