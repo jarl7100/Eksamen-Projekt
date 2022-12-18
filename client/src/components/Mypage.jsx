@@ -3,7 +3,6 @@ import { Button } from '@mui/material';
 import { Signup } from './Signup';
 
 export default function Mypage(props) {
-    const [loggedIn, setLoggedIn] = useState(false);
 
     console.log("loggedIn:" + window.localStorage.getItem('loggedIn'))
 
