@@ -7,7 +7,7 @@ import { log } from 'util';
 
 const theme = createTheme();
 const baseurl = "http://localhost:8080"
-´
+
 export function Signup(props) {
     const [loggedIn, setLoggedIn] = useState(false);
 
@@ -47,8 +47,7 @@ export function Signup(props) {
             })
             .catch((err) => {
                 console.log(err)
-                message = "Der er opstået en fejl"
-                alert(message)
+                alert( "Der er opstået en fejl")
             });
     };
 

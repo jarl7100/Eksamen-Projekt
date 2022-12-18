@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button, IconButton, Tab, Tabs, Avatar } from '@mui/material';
 import menuIcon from '../images/cbs-crypto-hub-low-resolution-logo-white-on-transparent-background.png'
+import axios from "axios";
 
 const Navbar = () => {
     const [value, setValue] = useState();
@@ -22,8 +23,31 @@ const Navbar = () => {
     const logout = async () => {
         console.log("logout user:")
         setLoggedIn(false)
+        let loginData = {
+        }
+        let jsonData = JSON.stringify(loginData)
+        var config = {
+            method: 'POST',
+            url: 'http://localhost:8080/logout',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            data: jsonData
+        };
 
-        window.location.href = '/';
+        console.log("json:" + jsonData)
+
+        axios(config)
+            .then(function (response) {
+                console.log("logout done")
+                setLoggedIn(false)
+                window.location.href = '/';
+            })
+            .catch((err) => {
+                console.log(err)
+                alert("Der er opstået en fejl")
+            });
+
     };
 
     return (

@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-
 import { Button } from '@mui/material';
 import { Signup } from './Signup';
 
-
-
 export default function Mypage(props) {
-   
     console.log("loggedIn:" + window.localStorage.getItem('loggedIn'))
 
     return (
@@ -16,6 +12,5 @@ export default function Mypage(props) {
                 : <h1>sign in or sign up to see My page</h1>
                 }
         </div>
-
     )
 }
