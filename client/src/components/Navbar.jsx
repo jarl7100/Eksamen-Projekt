@@ -68,7 +68,7 @@ const Navbar = () => {
                     </Tabs>
                     {loggedIn == true
                         ?
-                        <Button sx={{ marginLeft: "auto" }} variant="outlined" onClick={logout} >
+                        <Button sx={{ marginLeft: "10px" }} variant="outlined" onClick={logout} >
                             Logout
                         </Button>
                         :
@@ -76,7 +76,7 @@ const Navbar = () => {
                             <Button sx={{ marginLeft: "auto" }} variant="outlined" href='/signup'>
                                 Sign up
                             </Button>
-                            <Button sx={{ marginLeft: "10px" }} variant="outlined" href='/login'>
+                            <Button sx={{ marginLeft: "10px" }} variant="outlined" href='/signin'>
                                 sign in
                             </Button>
                         </div>
