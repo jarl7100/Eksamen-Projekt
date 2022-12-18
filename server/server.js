@@ -75,6 +75,7 @@ app.post('/logout', async (req, res) => {
 
 app.post('/register', async (req, res) => {
   const user = await getUserByUsername(req.body.username);
+  const password = req.body.password;
   console.log('/register called')
   console.log(req.body)
   if (req.body.username == null) {
@@ -83,6 +84,10 @@ app.post('/register', async (req, res) => {
   }
   if (user.length > 0) {
     res.status(400).send('Username already exists');
+    return
+  }
+  if (password.length === 0) {
+    res.status(400).send('Password cannot be empty');
     return
   }
   addUserToDatabase(req.body.username, hashPassword(req.body.password))

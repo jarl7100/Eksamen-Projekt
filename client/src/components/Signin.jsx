@@ -9,7 +9,7 @@ import { userInfo } from 'os';
 const theme = createTheme();
 
 export function Signin(props) {
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState("");
 
     useEffect(() => {
         window.localStorage.setItem('loggedIn', loggedIn);
@@ -17,7 +17,7 @@ export function Signin(props) {
 
 
     useEffect(() => {
-        setLoggedIn(JSON.parse(window.localStorage.getItem('loggedIn')));
+        setLoggedIn(window.localStorage.getItem('loggedIn'));
     }, []);
 
     const registerUser = async (username, password) => {
