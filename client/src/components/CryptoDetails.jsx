@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import millify from 'millify';
-import { Typography, Box} from '@mui/material';
+import { Typography } from '@mui/material';
 import { Row, Col, Statistic} from 'antd'
 
 import { useQuery } from '@tanstack/react-query';

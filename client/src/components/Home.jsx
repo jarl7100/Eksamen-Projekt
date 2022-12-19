@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {Box} from '@mui/material';
 import homePageImage from '../images/Tech Tech Website in Blue Cyan White Classy Neons Style (2).png'
 

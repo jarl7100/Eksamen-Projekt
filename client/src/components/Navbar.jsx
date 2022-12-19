@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useMatch, useResolvedPath } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Button, IconButton, Tab, Tabs, Avatar } from '@mui/material';
+import { AppBar, Toolbar, Button, Tab, Tabs, Avatar } from '@mui/material';
 import menuIcon from '../images/cbs-crypto-hub-low-resolution-logo-white-on-transparent-background.png'
 import axios from "axios";
 
 const Navbar = () => {
     const [value, setValue] = useState();
     const [loggedIn, setLoggedIn] = useState("");
-    const [items, setItems] = useState([]);
 
     useEffect(() => {
         const status = localStorage.getItem('loggedIn');

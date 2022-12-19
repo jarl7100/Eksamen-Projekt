@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Card, Row, Col, Input } from 'antd';
-import { styled } from '@mui/material/styles';
+import React from 'react';
+import { Card, Row, Col, } from 'antd';
 import millify from 'millify';
-import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Axios from 'axios';
 
@@ -49,7 +47,7 @@ export const Cryptocurrencies = () => {
             <a href={`/crypto/${currency.uuid}`}>
               <Card
                 title={`${currency.rank}. ${currency.name}`}
-                extra={<img className="image-crypto" src={currency.iconUrl} />}
+                extra={<img className="image-crypto" src={currency.iconUrl} alt="cryptoImage"/> }
                 hoverable
               >
                 <p>Price: {millify(currency.price)}</p>

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Row, Col, Statistic } from 'antd'
 import { Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import millify from 'millify';
 import { useQuery } from '@tanstack/react-query';
 import Axios from 'axios';
