@@ -18,7 +18,7 @@ export function Signin(props) {
         setLoggedIn(window.localStorage.getItem('loggedIn'));
     }, []);
 
-    const registerUser = async (username, password) => {
+    const signInUser = async (username, password) => {
         console.log("login user:" + username + " " + password)
         let loginData = {
             "username": username,
@@ -52,7 +52,7 @@ export function Signin(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        registerUser(data.get("username"), data.get("password"))
+        signInUser(data.get("username"), data.get("password"))
     };
 
     return (

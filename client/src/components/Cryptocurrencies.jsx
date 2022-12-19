@@ -6,7 +6,7 @@ import Axios from 'axios';
 
 
 // Her henter vi data fra Coinranking API
-const options = {
+const coinrankingAPI = {
     method: 'GET',
     url: 'https://coinranking1.p.rapidapi.com/coins',
     params: {
@@ -29,7 +29,7 @@ export const Cryptocurrencies = () => {
 
 // Der laves en query til Coinranking API med Axios og der bliver også lavet en isLoading state
     const { data:cryptosList,isLoading } = useQuery([], () => {
-        return Axios.request(options).then((res) => res.data);
+        return Axios.request(coinrankingAPI).then((res) => res.data);
      });
 
     if (isLoading) {

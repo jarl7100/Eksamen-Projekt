@@ -39,14 +39,14 @@ export default function Mypage() {
         <div>
             {window.localStorage.getItem('loggedIn') !== ""
                 ? <>
-                <h1>Here are some cool cryptoscurrencyes for you {window.localStorage.getItem('loggedIn')} ranked after the biggest change in price today:</h1>
+                <h1>Here are some cool cryptoscurrencyes for you {window.localStorage.getItem('loggedIn')}:</h1>
                 <Row gutter ={[20, 20]} className="container-crypto">
                   {cryptosList.data.coins.map((currency) => (
                     <Col xs={24} sm={12} lg={6} className="card-crypto" key={currency.id}>
                       <a href={`/crypto/${currency.uuid}`}>
                         <Card
                           title={`${currency.rank}. ${currency.name}`}
-                          extra={<img className="image-crypto" src={currency.iconUrl } alt="crypto image" />}
+                          extra={<img className="image-crypto" src={currency.iconUrl } alt="cryptoImage" />}
                           hoverable
                         >
                           <p>Price: {currency.price}</p>

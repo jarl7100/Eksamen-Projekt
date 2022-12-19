@@ -36,7 +36,7 @@ export default function News() {
 
           <Col xs={24} sm={12} lg={8} key={i}>
             <Card hoverable className="card-news">
-              <a href={news.url} target = "_Blank" rel="noreferrer">
+              <a href={news.url} target = "_Blank" rel="noopener noreferrer">
                 <div className='image-container-news'>
                   <Typography className='title-news' variant="h6"> {news.name}</Typography>
                   {news.image
