@@ -18,7 +18,6 @@ export function Signup() {
     }, []);
 
     const registerUser = async (username, password) => {
-        console.log("registering user:" + username + " " + password)
         let loginData = {
             "username": username,
             "password": password
@@ -33,19 +32,13 @@ export function Signup() {
             data: jsonData
         };
 
-        console.log("json:" + jsonData)
-
         axios(config)
             .then(function (response) {
-                console.log("register done")
-
                 setLoggedIn(username)
-
                 window.location.href = '/mypage';
             })
             .catch((err) => {
-                console.log(err)
-                alert( "Der er opstået en fejl")
+                alert("Der er opstået en fejl")
             });
     };
 

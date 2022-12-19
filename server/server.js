@@ -79,7 +79,7 @@ app.post('/register', async (req, res) => {
   console.log('/register called')
   console.log(req.body)
   if (req.body.username == null) {
-    res.status(400).send('Wrong username')
+    res.status(400).send('Invalid username')
     return
   }
   if (user.length > 0) {
@@ -126,7 +126,5 @@ app.use((req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
-
-
 
 https.createServer(options, app).listen(8443);

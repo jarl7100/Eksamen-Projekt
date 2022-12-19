@@ -19,7 +19,6 @@ export function Signin(props) {
     }, []);
 
     const signInUser = async (username, password) => {
-        console.log("login user:" + username + " " + password)
         let loginData = {
             "username": username,
             "password": password
@@ -34,18 +33,13 @@ export function Signin(props) {
             data: jsonData
         };
 
-        console.log("json:" + jsonData)
-
         axios(config)
             .then(function (response) {
-                console.log("login done")
                 setLoggedIn(username)
-
                 window.location.href = '/mypage';
             })
             .catch((err) => {
-                console.log(err)
-                alert( "Der er opstået en fejl")
+                alert("Der er opstået en fejl")
             });
     };
 

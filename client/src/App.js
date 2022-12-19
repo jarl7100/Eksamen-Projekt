@@ -23,7 +23,7 @@ function App() {
         <Toolbar />
         <div className='container'>
           <Routes>
-          <Route path='/' element={<Home />} />
+            <Route path='/' element={<Home />} />
             <Route path='/cryptos' element={<Cryptocurrencies />} />
             <Route path='/news' element={<News />} />
             <Route path='/cryptostats' element={<Cryptostats />} />

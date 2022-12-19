@@ -19,8 +19,6 @@ const Navbar = () => {
     }, [loggedIn]);
 
     const logout = async () => {
-        console.log("logout user:")
-
         var config = {
             method: 'POST',
             url: 'http://localhost:8080/logout',
@@ -31,12 +29,10 @@ const Navbar = () => {
 
         axios(config)
             .then(function (response) {
-                console.log("logout done")
                 setLoggedIn("")
                 window.location.href = '/';
             })
             .catch((err) => {
-                console.log(err)
                 alert("Der er opstået en fejl")
             });
 
@@ -58,7 +54,7 @@ const Navbar = () => {
                         <Tab label="Crypto stats" href='cryptostats' />
                         <Tab label="My page" href='mypage' />
                     </Tabs>
-                    {loggedIn !== "" 
+                    {loggedIn !== ""
                         ?
                         <Button sx={{ marginLeft: "10px" }} variant="outlined" onClick={logout} >
                             Logout

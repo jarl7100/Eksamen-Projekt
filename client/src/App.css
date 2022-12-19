@@ -1,29 +1,34 @@
-.card-container-crypto{
+.card-container-crypto {
     min-height: 65vh !important;
 }
-.card-crypto{
+
+.card-crypto {
     min-width: 250px;
 }
-.card-crypto .image-crypto{
-    width:35px;
+
+.card-crypto .image-crypto {
+    width: 35px;
 }
 
-.card-news{
+.card-news {
     min-height: 300px !important;
 }
-.image-container-news{
+
+.image-container-news {
     display: flex !important;
     justify-content: space-between !important;
 }
-.title-news{
-width: 70%;
+
+.title-news {
+    width: 70%;
 }
 
-.image-container-news .img{
-    width:100px;
-    height:100px;
+.image-container-news .img {
+    width: 100px;
+    height: 100px;
 }
-.card-news p{
+
+.card-news p {
     color: black;
     margin: 10px 0px !important;
 }
