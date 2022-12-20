@@ -60,22 +60,21 @@ const getUserByUsername = (userName) => {
 }
 
 const hashPassword = (password) => {
-  const md5sum = crypto.createHash('md5');
+  const sha256sum = crypto.createHash('sha256');
   const salt = 'salt goes here';
-  return md5sum.update(password + salt).digest('hex');
+  return sha256sum.update(password + salt).digest('hex');
 }
 
 
 app.post('/logout', async (req, res) => {
   console.log('/logout called')
   req.session.destroy((err) => {});
-  return res.send("Thank you! Visit again");
-
+  return res.send("User logget out");
 })
 
 app.post('/register', async (req, res) => {
   const user = await getUserByUsername(req.body.username);
-  const password = req.body.password;
+  const password = await req.body.password;
   console.log('/register called')
   console.log(req.body)
   if (req.body.username == null) {
